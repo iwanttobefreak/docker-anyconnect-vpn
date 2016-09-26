@@ -1,17 +1,7 @@
 #!/bin/bash
-server=$ANYCONNECT_SERVER
-user=$ANYCONNECT_USER
-password=$ANYCONNECT_PASSWORD
+echo $ANYCONNECT_PASSWORD|openconnect $ANYCONNECT_SERVER --user=$ANYCONNECT_USER --no-cert-check -b
 
-/usr/bin/expect <<EOF
-spawn openconnect $server --user=$user
-expect "*anything else to view:"
-send "yes\r"
-expect "*?assword:"
-send "$password\r"
-expect "*AES256-SHA."
-interact
-EOF
+sleep 5
 
 iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
 iptables -A FORWARD -i eth0 -j ACCEPT
