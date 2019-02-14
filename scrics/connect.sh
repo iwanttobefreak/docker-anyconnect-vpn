@@ -1,5 +1,5 @@
 #!/bin/bash
-echo $ANYCONNECT_PASSWORD|openconnect $ANYCONNECT_SERVER --user=$ANYCONNECT_USER --no-cert-check -b
+echo $ANYCONNECT_PASSWORD|openconnect $ANYCONNECT_SERVER --user=$ANYCONNECT_USER --authgroup=AnyConnect-Windows --no-cert-check -b
 
 sleep 5
 
